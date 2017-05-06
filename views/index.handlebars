@@ -1,0 +1,48 @@
+<div class="row">
+<section class="container">
+  <div class="col-lg-5 col-md-5 col-sm-5 shadow">
+  <h2 class="label label-info">Pending Goals</h2>
+  <ul>
+    {{#each goals}}
+      {{#unless this.complete}}
+        <li class="animated lightSpeedIn">
+          {{this.goal}}
+         <span> Created on: </span>
+          {{this.date}}
+
+          <form action="/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="complete" value="true">
+            <button type="submit">Complete</button>
+          </form>
+        </li>
+      {{/unless}}
+    {{/each}}
+  </ul>
+  </div>
+  <div class="col-lg-5 col-md-5 col-sm-5 shadow complete">
+  <h2 class="label label-default">Completed</h2>
+  <ul>
+    {{#each goals}}
+      {{#if this.complete}}
+        <li class="animated fadeIn">
+          {{this.goal}}
+      {{/if}}
+    {{/each}}
+  </ul>
+  </div>
+  </section>
+</div>
+
+<div class="row">
+<section class="container">
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">Write Your Goal:</label>
+    <input type="text" id="ca" name="goal">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Goal</button>
+</form>
+</section>
+</div>
